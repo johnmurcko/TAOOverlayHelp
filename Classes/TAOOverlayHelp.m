@@ -12,11 +12,15 @@
 @interface TAOOverlayHelp ()
 @property (strong, nonatomic) TAOArrowLayer* arrowLayer;
 @property (strong, nonatomic) UILabel * textLabel;
+@property (strong, nonatomic) UILabel * continueLabel;
 @property (strong, nonatomic) TAOOverlayHelpCompletionBlock didDismissBlock;
 @property (strong, nonatomic) NSMutableArray* statusMessages;
 @property (strong, nonatomic) NSMutableArray* pointAtArray;
 @property (strong, nonatomic) NSMutableArray* didDismissBlockArray;
 @end
+
+static float const kHalfTransparent = 0.5f;
+static float const kOpaque = 1.0f;
 
 @implementation TAOOverlayHelp
 
@@ -42,6 +46,17 @@
         [self.textLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
         [self addSubview:self.textLabel];
         
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        self.continueLabel = [[UILabel alloc] init];
+        self.continueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.continueLabel.textAlignment = NSTextAlignmentCenter;
+        self.continueLabel.font = [UIFont systemFontOfSize:20];
+        self.continueLabel.backgroundColor = [UIColor clearColor];
+        self.continueLabel.textColor = [UIColor redColor];
+        self.continueLabel.numberOfLines = 0;
+        [self.continueLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        [self.continueLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        [self addSubview:self.continueLabel];
         
         self.arrowLayer = [[TAOArrowLayer alloc] init];
         self.arrowLayer.frame = self.layer.bounds;
@@ -103,6 +118,7 @@
 }
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
     if (!status || status.length == 0) return nil;
+ 
     
     NSUInteger index = NSNotFound;
     if ([status isEqualToString:[[self sharedView].statusMessages lastObject]]) {
@@ -126,15 +142,16 @@
 - (void)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock {
     if(!self.superview){
         NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
-        
         for (UIWindow *window in frontToBackWindows)
             if (window.windowLevel == UIWindowLevelNormal) {
                 [window addSubview:self];
                 break;
             }
     }
+
     
     self.textLabel.text = status;
+    self.continueLabel.text = @"Tap to continue";
     self.didDismissBlock = didDismissBlock;
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
@@ -249,5 +266,22 @@
 + (BOOL)isVisible {
     return ([self sharedView].alpha == 1);
 }
+-(void)fadeInLabel: (UILabel*) label {
+    [UIView animateWithDuration: 0.5f
+                     animations:^{
+                         [label setAlpha: kOpaque];
+                     }
+                     completion:^(BOOL finished){
+                         [self fadeOutLabel: label];
+                     }];
+}
 
-@end
+-(void)fadeOutLabel: (UILabel*) label {
+    [UIView animateWithDuration: 0.5f
+                     animations:^{
+                         [label setAlpha: kHalfTransparent];
+                     }
+                     completion:^(BOOL finished){
+                         [self fadeInLabel: label];
+                     }];
+}@end

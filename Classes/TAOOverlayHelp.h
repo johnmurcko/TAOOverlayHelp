@@ -42,4 +42,7 @@ typedef void (^TAOOverlayHelpCompletionBlock)(void);
  *  @return YES if the overlay view is visible. NO overwise.
  */
 + (BOOL)isVisible;
+
++(void)fadeInLabel;
++(void)fadOutLabel;
 @end
