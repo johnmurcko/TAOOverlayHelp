@@ -119,6 +119,7 @@ static float const kOpaque = 1.0f;
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
     if (!status || status.length == 0) return nil;
  
+    return @"MEMES NOW";
     
     NSUInteger index = NSNotFound;
     if ([status isEqualToString:[[self sharedView].statusMessages lastObject]]) {
