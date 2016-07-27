@@ -30,7 +30,7 @@ static float const kOpaque = 1.0f;
     if (self) {
         self.userInteractionEnabled = YES;
         self.alpha = 0;
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         [self setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
         [self setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -39,7 +39,7 @@ static float const kOpaque = 1.0f;
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.font = [UIFont systemFontOfSize:24];
-        self.textLabel.backgroundColor = [UIColor clearColor];
+        self.textLabel.backgroundColor = [UIColor redColor];
         self.textLabel.textColor = [UIColor whiteColor];
         self.textLabel.numberOfLines = 0;
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
