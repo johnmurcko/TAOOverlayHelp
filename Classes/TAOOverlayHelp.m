@@ -39,7 +39,7 @@ static float const kOpaque = 1.0f;
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.font = [UIFont systemFontOfSize:24];
-        self.textLabel.backgroundColor = [UIColor clearColor];
+        self.textLabel.backgroundColor = [UIColor redColor];
         self.textLabel.textColor = [UIColor whiteColor];
         self.textLabel.numberOfLines = 0;
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
@@ -117,9 +117,14 @@ static float const kOpaque = 1.0f;
     }
 }
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
+    /*
+    status = @"meme";
     if (!status || status.length == 0) return nil;
     
-    NSLog (@"please");
+    if (YES) {
+        NSLog (@"please");
+        return @"please";
+    }
     
     NSUInteger index = NSNotFound;
     if ([status isEqualToString:[[self sharedView].statusMessages lastObject]]) {
@@ -130,17 +135,19 @@ static float const kOpaque = 1.0f;
         [[self sharedView].didDismissBlockArray removeObjectAtIndex:index];
     }
     
-    [[self sharedView].statusMessages addObject:status];
+    [[self sharedView].statusMessages addObject:@"meme"];
     [[self sharedView].pointAtArray addObject:[NSValue valueWithCGPoint:point]];
     if (!didDismissBlock) {
         didDismissBlock = ^{};
     }
     [[self sharedView].didDismissBlockArray addObject:didDismissBlock];
     
-    [[self sharedView] showWithHelpTip:status pointAt:point didDismiss:didDismissBlock];
+    [[self sharedView] showWithHelpTip:@"meme" pointAt:point didDismiss:didDismissBlock];
     return status;
+     */
 }
 - (void)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock {
+    /*
     if(!self.superview){
         NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
         for (UIWindow *window in frontToBackWindows)
@@ -150,8 +157,9 @@ static float const kOpaque = 1.0f;
             }
     }
 
+    status = @"meme";
     
-    self.textLabel.text = status;
+    self.textLabel.text = @"meme";
     self.continueLabel.text = @"Tap to continue";
     self.didDismissBlock = didDismissBlock;
     [self setNeedsUpdateConstraints];
@@ -195,7 +203,7 @@ static float const kOpaque = 1.0f;
         
         [self setNeedsDisplay];
     }
-
+     */
 }
 - (void)dismiss {
     [UIView animateWithDuration:0.15
