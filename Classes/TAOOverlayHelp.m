@@ -116,10 +116,9 @@ static float const kOpaque = 1.0f;
         [self.superview addConstraints:[TAOOverlayHelp fillSuperviewConstraintsForView:self]];
     }
 }
+/*
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
     if (!status || status.length == 0) return nil;
- 
-    return @"MEMES NOW";
     
     NSUInteger index = NSNotFound;
     if ([status isEqualToString:[[self sharedView].statusMessages lastObject]]) {
@@ -220,6 +219,7 @@ static float const kOpaque = 1.0f;
                          }
                      }];
 }
+ */
 - (void)tapView:(UITapGestureRecognizer*)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         [TAOOverlayHelp dismiss];
