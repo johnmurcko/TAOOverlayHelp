@@ -117,13 +117,7 @@ static float const kOpaque = 1.0f;
     }
 }
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
-    /*
     if (!status || status.length == 0) return nil;
-    
-    if (YES) {
-        NSLog (@"please");
-        return @"please";
-    }
     
     NSUInteger index = NSNotFound;
     if ([status isEqualToString:[[self sharedView].statusMessages lastObject]]) {
@@ -143,10 +137,8 @@ static float const kOpaque = 1.0f;
     
     [[self sharedView] showWithHelpTip:status pointAt:point didDismiss:didDismissBlock];
     return status;
-     */
 }
 - (void)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock {
-    /*
     if(!self.superview){
         NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
         for (UIWindow *window in frontToBackWindows)
@@ -201,7 +193,6 @@ static float const kOpaque = 1.0f;
         
         [self setNeedsDisplay];
     }
-     */
 }
 - (void)dismiss {
     [UIView animateWithDuration:0.15
