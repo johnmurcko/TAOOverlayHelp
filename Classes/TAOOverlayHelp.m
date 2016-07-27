@@ -118,7 +118,6 @@ static float const kOpaque = 1.0f;
 }
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
     /*
-    status = @"meme";
     if (!status || status.length == 0) return nil;
     
     if (YES) {
@@ -135,14 +134,14 @@ static float const kOpaque = 1.0f;
         [[self sharedView].didDismissBlockArray removeObjectAtIndex:index];
     }
     
-    [[self sharedView].statusMessages addObject:@"meme"];
+    [[self sharedView].statusMessages addObject:status];
     [[self sharedView].pointAtArray addObject:[NSValue valueWithCGPoint:point]];
     if (!didDismissBlock) {
         didDismissBlock = ^{};
     }
     [[self sharedView].didDismissBlockArray addObject:didDismissBlock];
     
-    [[self sharedView] showWithHelpTip:@"meme" pointAt:point didDismiss:didDismissBlock];
+    [[self sharedView] showWithHelpTip:status pointAt:point didDismiss:didDismissBlock];
     return status;
      */
 }
@@ -157,9 +156,8 @@ static float const kOpaque = 1.0f;
             }
     }
 
-    status = @"meme";
     
-    self.textLabel.text = @"meme";
+    self.textLabel.text = status;
     self.continueLabel.text = @"Tap to continue";
     self.didDismissBlock = didDismissBlock;
     [self setNeedsUpdateConstraints];
