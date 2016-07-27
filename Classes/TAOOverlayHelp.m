@@ -39,7 +39,7 @@ static float const kOpaque = 1.0f;
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.font = [UIFont systemFontOfSize:24];
-        self.textLabel.backgroundColor = [UIColor redColor];
+        self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.textColor = [UIColor whiteColor];
         self.textLabel.numberOfLines = 0;
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
@@ -116,9 +116,10 @@ static float const kOpaque = 1.0f;
         [self.superview addConstraints:[TAOOverlayHelp fillSuperviewConstraintsForView:self]];
     }
 }
-/*
 + (NSString*)showWithHelpTip:(NSString*)status pointAt:(CGPoint)point didDismiss:(TAOOverlayHelpCompletionBlock)didDismissBlock{
     if (!status || status.length == 0) return nil;
+    
+    NSLog (@"please");
     
     NSUInteger index = NSNotFound;
     if ([status isEqualToString:[[self sharedView].statusMessages lastObject]]) {
@@ -219,7 +220,6 @@ static float const kOpaque = 1.0f;
                          }
                      }];
 }
- */
 - (void)tapView:(UITapGestureRecognizer*)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         [TAOOverlayHelp dismiss];
