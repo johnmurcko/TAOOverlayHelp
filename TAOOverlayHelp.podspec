@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.screenshots      = "https://cloud.githubusercontent.com/assets/99543/2811277/2b5a35ac-ce12-11e3-9906-c333aee1be96.png"
   s.license          = 'MIT'
   s.author           = { "Three Tall Guys" => "hi@threetallguys.com", "Or Sharir" => "or@threetallguys.com" }
-  s.source           = { :git => "https://github.com/three-tall-guys/TAOOverlayHelp.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/johnmurcko/TAOOverlayHelp.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
