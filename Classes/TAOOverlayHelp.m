@@ -30,7 +30,7 @@ static float const kOpaque = 1.0f;
     if (self) {
         self.userInteractionEnabled = YES;
         self.alpha = 0;
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         [self setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
         [self setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
