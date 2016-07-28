@@ -39,7 +39,7 @@ static float const kOpaque = 1.0f;
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.font = [UIFont systemFontOfSize:24];
-        self.textLabel.backgroundColor = [UIColor redColor];
+        self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.textColor = [UIColor whiteColor];
         self.textLabel.numberOfLines = 0;
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
@@ -50,13 +50,14 @@ static float const kOpaque = 1.0f;
         self.continueLabel = [[UILabel alloc] init];
         self.continueLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.continueLabel.textAlignment = NSTextAlignmentCenter;
-        self.continueLabel.font = [UIFont systemFontOfSize:20];
+        self.continueLabel.font = [UIFont systemFontOfSize:17];
         self.continueLabel.backgroundColor = [UIColor clearColor];
-        self.continueLabel.textColor = [UIColor redColor];
-        self.continueLabel.numberOfLines = 0;
-        [self.continueLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
-        [self.continueLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        self.continueLabel.textColor = [UIColor whiteColor];
+        self.continueLabel.numberOfLines = 2;
+        [self.continueLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+        [self.continueLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
         [self addSubview:self.continueLabel];
+        [self fadeInLabel: self.continueLabel];
         
         self.arrowLayer = [[TAOArrowLayer alloc] init];
         self.arrowLayer.frame = self.layer.bounds;
@@ -80,7 +81,9 @@ static float const kOpaque = 1.0f;
     NSLayoutConstraint* centerX = [NSLayoutConstraint constraintWithItem:self.textLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
     NSLayoutConstraint* marginLeft = [NSLayoutConstraint constraintWithItem:self.textLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1 constant:30];
     NSLayoutConstraint* marginRight = [NSLayoutConstraint constraintWithItem:self.textLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationLessThanOrEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1 constant:-30];
-    [self addConstraints:@[centerX, centerY, marginLeft, marginRight]];
+    NSLayoutConstraint* bottomY = [NSLayoutConstraint constraintWithItem:self.continueLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.textLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:25];
+    NSLayoutConstraint* centerX2 = [NSLayoutConstraint constraintWithItem:self.continueLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+    [self addConstraints:@[centerX, centerY, marginLeft, marginRight, centerX2, bottomY]];
     
     [super updateConstraints];
 }
@@ -150,7 +153,7 @@ static float const kOpaque = 1.0f;
 
     
     self.textLabel.text = status;
-    self.continueLabel.text = @"Tap to continue";
+    self.continueLabel.text = @"(Tap to continue)";
     self.didDismissBlock = didDismissBlock;
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
@@ -265,7 +268,7 @@ static float const kOpaque = 1.0f;
     return ([self sharedView].alpha == 1);
 }
 -(void)fadeInLabel: (UILabel*) label {
-    [UIView animateWithDuration: 0.5f
+    [UIView animateWithDuration: 1.0f
                      animations:^{
                          [label setAlpha: kOpaque];
                      }
@@ -275,9 +278,9 @@ static float const kOpaque = 1.0f;
 }
 
 -(void)fadeOutLabel: (UILabel*) label {
-    [UIView animateWithDuration: 0.5f
+    [UIView animateWithDuration: 1.0f
                      animations:^{
-                         [label setAlpha: kHalfTransparent];
+                         [label setAlpha: kHalfTransparent-.2f];
                      }
                      completion:^(BOOL finished){
                          [self fadeInLabel: label];
